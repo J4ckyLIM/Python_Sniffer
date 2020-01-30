@@ -28,7 +28,7 @@ def main():
     try:
         print("Sniffer started")
         while True:
-            msg = s.recv(1024)P
+            msg = s.recv(1024)
             decode(msg)
     except KeyboardInterrupt:
         print("Sniffer stopped")
