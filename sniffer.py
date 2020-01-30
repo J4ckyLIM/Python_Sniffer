@@ -5,6 +5,7 @@ from src import helpers
 
 
 def decode(msg):
+
 	mac_dst = struct.unpack('!6B', msg[0:6])
 	mac_dst = helpers.convert_int_list_to_exa_string(mac_dst)
 
@@ -50,6 +51,12 @@ def decode(msg):
 
 		tia = struct.unpack('!3B', msg[39:42])
 		print(f"TARGET IA: {tia}")
+
+	if protocole == "6":
+		port_source = struct.unpack('!2B', msg[0:2])
+		port_dest = struct.unpack('!2B', msg[2:4])
+		print(f"PORT_SRC: {port_source}")
+		print(f"PORT_DEST: {port_dest}")
 
 
 def main():
