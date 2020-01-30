@@ -29,8 +29,27 @@ def decode(msg):
 		print(f"ip_source: {ip_source}")
 
 		ip_destination = struct.unpack('!4B', msg[30:34])
-		ip_destination = ".".join(str(part) for part in ip_destination)
+		ip_destination = helpers.convert_int_list_to_string(ip_destination)
 		print(f"IP_DST: {ip_destination}")
+
+	if ether_type == "0806":
+		protocole = struct.unpack('!2B', msg[16:18])
+		protocole = protocole[0]
+		print(f"PROTOCOLE: {protocole}")
+
+		sender_ha = struct.unpack('!6B', msg[23:29])
+		sender_ha = helpers.convert_int_list_to_exa_string(sender_ha)
+		print(f"Sender_HA: {sender_ha}")
+
+		sender_ia = struct.unpack('!4B', msg[29:33])
+		print(f"Sender_IA: {sender_ia}")
+
+		tha = struct.unpack('!6B', msg[33:39])
+		tha = helpers.convert_int_list_to_exa_string(tha)
+		print(f"TARGET HA: {tha}")
+
+		tia = struct.unpack('!3B', msg[39:42])
+		print(f"TARGET IA: {tia}")
 
 
 def main():
